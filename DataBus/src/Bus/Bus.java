@@ -1,4 +1,4 @@
-
+package Bus;
 
 public class Bus {
     /*data members, getters, setters*/
