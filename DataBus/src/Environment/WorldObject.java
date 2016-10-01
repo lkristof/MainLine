@@ -1,4 +1,4 @@
-package DataBus.src.Environment;
+package Environment;
 import java.lang.*;
 
 import java.util.ResourceBundle;

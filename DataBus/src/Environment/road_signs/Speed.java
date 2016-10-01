@@ -1,7 +1,7 @@
-package DataBus.src.Environment.road_signs;
+package Environment.road_signs;
 
-import DataBus.src.Environment.Position;
-import DataBus.src.Environment.WorldObject;
+import Environment.Position;
+import Environment.WorldObject;
 
 /**
  * Created by nemet on 2016. 09. 30..

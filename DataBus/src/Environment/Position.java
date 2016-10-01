@@ -1,4 +1,4 @@
-package DataBus.src.Environment;
+package Environment;
 
 /**
  * Created by Akos on 2016. 09. 27..

@@ -1,7 +1,7 @@
-package DataBus.src.Environment.misc;
+package Environment.misc;
 
-import DataBus.src.Environment.Position;
-import DataBus.src.Environment.WorldObject;
+import Environment.Position;
+import Environment.WorldObject;
 
 /**
  * Created by Akos on 2016. 09. 27..

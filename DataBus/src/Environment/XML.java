@@ -1,4 +1,5 @@
-package DataBus.src.Environment;
+package Environment;
+import  Environment.*;
 
 /**
  * Created by Zolee on 2016. 09. 28..

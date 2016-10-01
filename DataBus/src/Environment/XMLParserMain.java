@@ -1,5 +1,5 @@
-package DataBus.src.Environment;
-import DataBus.src.Environment.*;
+package Environment;
+import Environment.*;
 
 import java.util.ArrayList;
 import java.util.List;
