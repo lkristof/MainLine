@@ -12,9 +12,9 @@ public class LaneSimple extends WorldObject{
     public enum RoadPaintings3 {undefinied1,undefinied2,undefinied3}
     public enum LaneSimpleType {Left45,Left65,Left90,Right45,Right65,Right90,Straight}
 
-    public LaneSimple(int Id, String Name, int Type, Position startPosition,
+    public LaneSimple(int Id, Position startPosition,
                       int[] Transform, int Zlevel, int Opacity) {
-            super(Id, Name, Type, startPosition,
+            super(Id, startPosition,
             Transform, Zlevel, Opacity);
     }
 }

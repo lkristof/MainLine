@@ -7,8 +7,8 @@ import Environment.WorldObject;
  * Created by nemet on 2016. 09. 30..
  */
 public class Priority extends WorldObject {
-    public Priority(int Id, String Name, int Type, Position startPosition, int[] Transform, int Zlevel, int Opacity, PriorityType priorityType) {
-        super(Id, Name, Type, startPosition, Transform, Zlevel, Opacity);
+    public Priority(int Id, Position startPosition, int[] Transform, int Zlevel, int Opacity, PriorityType priorityType) {
+        super(Id, startPosition, Transform, Zlevel, Opacity);
         this.priorityType = priorityType;
     }
 

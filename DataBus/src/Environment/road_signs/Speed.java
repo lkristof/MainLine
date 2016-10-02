@@ -7,8 +7,8 @@ import Environment.WorldObject;
  * Created by nemet on 2016. 09. 30..
  */
 public class Speed extends WorldObject{
-    public Speed(int Id, String Name, int Type, Position startPosition, int[] Transform, int Zlevel, int Opacity, SpeedType speedType) {
-        super(Id, Name, Type, startPosition, Transform, Zlevel, Opacity);
+    public Speed(int Id, Position startPosition, int[] Transform, int Zlevel, int Opacity, SpeedType speedType) {
+        super(Id, startPosition, Transform, Zlevel, Opacity);
         this.speedType = speedType;
     }
 

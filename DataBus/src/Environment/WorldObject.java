@@ -12,7 +12,7 @@ import java.util.ResourceBundle;
         private int id;
         public int getId() { return this.id; }
         public void setId(int id) { this.id = id; }
-
+/*
         //name
         private String name;
         public String getName() { return this.name; }
@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
         private int type;
         public int getType() { return this.type; }
         public void setType(int type) { this.type = type; }
-
+*/
         //position
         private Position position;
         public Position getPosition() { return this.position; }
@@ -47,11 +47,9 @@ import java.util.ResourceBundle;
         public boolean getCanStuckOnIt() { return this.canStuckOnIt; }
         public void setCanStuckOnIt(boolean canStuckOnIt) { this.canStuckOnIt = canStuckOnIt; }
 
-        public WorldObject(int Id, String Name, int Type, Position startPosition, int[] Transform, int Zlevel, int Opacity)
+        public WorldObject(int Id, Position startPosition, int[] Transform, int Zlevel, int Opacity)
         {
             this.id = Id;
-            this.name = Name;
-            this.type = Type;
             this.position = startPosition;
             this.transform = Transform;
             this.zLevel = Zlevel;

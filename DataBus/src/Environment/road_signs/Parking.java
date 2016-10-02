@@ -10,8 +10,8 @@ import Environment.WorldObject;
 
 public class Parking extends WorldObject{
 
-    public Parking(int Id, String Name, int Type, Position startPosition, int[] Transform, int Zlevel, int Opacity, ParkingType parkingType) {
-        super(Id, Name, Type, startPosition, Transform, Zlevel, Opacity);
+    public Parking(int Id, Position startPosition, int[] Transform, int Zlevel, int Opacity, ParkingType parkingType) {
+        super(Id, startPosition, Transform, Zlevel, Opacity);
         this.parkingType = parkingType;
     }
 
