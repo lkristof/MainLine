@@ -12,4 +12,10 @@ public class People extends WorldObject {
     public People(int Id, Position startPosition, int[] Transform, int Zlevel, int Opacity) {
         super(Id, startPosition, Transform, Zlevel, Opacity);
     }
+
+
+    public String toString()
+    {
+        return "Id" + this.getId() + "Zlevel: " + this.getZLevel() + "Opacity: " + this.getOpacity();
+    }
 }

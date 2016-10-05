@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module version="4">
   <component name="NewModuleRootManager" inherit-compiler-output="false">
-    <output url="file:///production/MainLine" />
-    <output-test url="file:///test/MainLine" />
+    <output url="file://C:/production/GitHub/MainLineRun" />
+    <output-test url="file://C:/production/GitHub/MainLineRun" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/DataBus/src" isTestSource="false" />

@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 /**
  * Created by Akos on 2016. 09. 27..
  */
- public class WorldObject {
+ public abstract class WorldObject {
 
         //id
         private int id;
