@@ -10,13 +10,13 @@ public class Main {
         System.out.println("Main has started");
 
         try {
-            if (new XMLParserMain().Parser() == true)
+            if (new XMLParserMain().Parser())
                 System.out.println("Sikeres feldolgozás");
             else
                 System.out.println("Sikertelen feldolgozás");
         }
         catch (XMLStreamException e) {
-            System.out.println("Sikertelen feldolgozás");
+            System.out.println(String.format("%s\n" + "%s", "Sikertelen feldolgozás", e.getMessage()));
         }
         /*Call modules in the logical order here*/
 

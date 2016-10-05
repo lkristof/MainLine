@@ -29,7 +29,7 @@ public class XMLParserMain {
 
     public boolean Parser() throws XMLStreamException {
 
-        if (XmlFileOpener() == true)
+        if (XmlFileOpener())
         {
             while (streamReader.hasNext()) {
                 int event = streamReader.next();
@@ -138,7 +138,7 @@ public class XMLParserMain {
                 return true;
 
             } catch (XMLStreamException e) {
-                System.out.println("Valami nem jó");
+                System.out.println(String.format("%s\n" + "%s", "Valami nem jó", e.getMessage()));
                 return false;
             }
         }
