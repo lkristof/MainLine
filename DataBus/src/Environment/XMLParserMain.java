@@ -1,7 +1,7 @@
 package Environment;
 
 import Environment.misc.*;
-import Environment.road_signs.ParkingSign;
+import Environment.road_signs.ParkingTable;
 
 import javax.swing.*;
 import javax.xml.stream.*;
@@ -105,10 +105,10 @@ public class XMLParserMain {
                         System.out.println(collectionType + " táblát hozunk létre");
                             switch (elementType) {
                                 case "314_10_.svg":
-                                    DynamicObjects.add(new ParkingSign(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, ParkingSign.ParkingType.ParkingLeft));
+                                    DynamicObjects.add(new ParkingSign(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity));
                                     break;
                                 case "314_20_.svg":
-                                    DynamicObjects.add(new ParkingSign(tmpId,tmpPos,tmpTransform,tmpZlevel,tmpOpacity, ParkingSign.ParkingType.ParkingRight));
+                                    DynamicObjects.add(new ParkingTable(tmpId,tmpPos,tmpTransform,tmpZlevel,tmpOpacity));
                                     break;
                             }
                             break;
