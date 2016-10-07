@@ -1,12 +1,9 @@
 package Environment;
 
-import Environment.*;
 import Environment.misc.*;
+import Environment.road_signs.ParkingSign;
 
 import javax.swing.*;
-import javax.swing.text.*;
-import javax.swing.text.Position;
-import javax.xml.crypto.dsig.Transform;
 import javax.xml.stream.*;
 import java.io.File;
 import java.util.ArrayList;
@@ -21,13 +18,11 @@ public class XMLParserMain {
     private XMLStreamReader streamReader;
     private int tmpId;
     private String tmpName;
-    private String tmpType;
     private List<WorldObject> DynamicObjects = null;
-    private int tmpPosX;
-    private int tmpPosY;
-    private int[] Transform = new int[4];
-    private int Zlevel;
-    private int Opacity;
+    private int[] tmpPos = new int[2];
+    private double[] tmpTransform = new double[4];
+    private int tmpZlevel;
+    private int tmpOpacity;
 
 
     public boolean Parser() throws XMLStreamException {
@@ -39,7 +34,6 @@ public class XMLParserMain {
                 switch (event) {
                     case XMLStreamConstants.START_ELEMENT:
                         if ("Object".equals(streamReader.getLocalName())) {
-                            tmpType = streamReader.getAttributeValue("", "type");
                             tmpName = streamReader.getAttributeValue("", "name");
                             tmpId = Integer.parseInt(streamReader.getAttributeValue("", "id"));
                         }
@@ -47,32 +41,31 @@ public class XMLParserMain {
                             DynamicObjects = new ArrayList<>();
                         }
                         if ("Position".equals(streamReader.getLocalName())) {
-                            tmpPosX = (int)Math.round(Double.parseDouble(streamReader.getAttributeValue("","x")));
-                            tmpPosY = (int)Math.round(Double.parseDouble(streamReader.getAttributeValue("","y")));
+                            tmpPos[0] = (int)Math.round(Double.parseDouble(streamReader.getAttributeValue("","x")));
+                            tmpPos[1] = (int)Math.round(Double.parseDouble(streamReader.getAttributeValue("","y")));
                         }
                         if ("Transform".equals(streamReader.getLocalName())) {
-                            Transform[0] = (int)Math.round(Double.parseDouble(streamReader.getAttributeValue("","m21")));
-                            Transform[1] = (int)Math.round(Double.parseDouble(streamReader.getAttributeValue("","m11")));
-                            Transform[2] = (int)Math.round(Double.parseDouble(streamReader.getAttributeValue("","m22")));
-                            Transform[3] = (int)Math.round(Double.parseDouble(streamReader.getAttributeValue("","m12")));
+                            tmpTransform[0] = (int)Math.round(Double.parseDouble(streamReader.getAttributeValue("","m21")));
+                            tmpTransform[1] = (int)Math.round(Double.parseDouble(streamReader.getAttributeValue("","m11")));
+                            tmpTransform[2] = (int)Math.round(Double.parseDouble(streamReader.getAttributeValue("","m22")));
+                            tmpTransform[3] = (int)Math.round(Double.parseDouble(streamReader.getAttributeValue("","m12")));
                         }
                         if ("ZLevel".equals(streamReader.getLocalName())) {
-                            Zlevel = Integer.parseInt(streamReader.getAttributeValue("","ZLevel"));
+                            tmpZlevel = Integer.parseInt(streamReader.getAttributeValue("","ZLevel"));
                         }
                         if ("Opacity".equals(streamReader.getLocalName())) {
-                            Opacity = Integer.parseInt(streamReader.getAttributeValue("", "Opacity"));
+                            tmpOpacity = Integer.parseInt(streamReader.getAttributeValue("", "Opacity"));
                         }
 
 
                         break;
                     case XMLStreamConstants.END_ELEMENT:
                         if ("Object".equals(streamReader.getLocalName())){
-                            String[] splitNameTag;
-                            splitNameTag = tmpName.split("/");
+                            String[] splitName = tmpName.split("/");
                             if (DynamicObjects != null) {
-                                CreateClassElementByName(splitNameTag[2]);
+                                CreateClassElementByName(splitName[1],splitName[2],splitName[3]);
                             } else {
-
+                                streamReader.close();
                                 return false;
                             }
                         }
@@ -80,49 +73,80 @@ public class XMLParserMain {
 
                 }
             }
+            streamReader.close();
             return true;
         }
-        else
+        else {
+            streamReader.close();
             return false;
+        }
     }
 
-    private void CreateClassElementByName(String name)
+    private void CreateClassElementByName(String collection, String collectionType, String elementType)
     {
-            switch (name) {
+            switch (collectionType) {
+                //misc mappában lévők
+                case "crosswalks":
+                    System.out.println(collectionType+"-t hozunk létre");
+                    break;
                 case "people": {
-                    System.out.println(name+"-t hozunk létre");
-                    DynamicObjects.add(new People(tmpId, new Environment.Position(tmpPosX,tmpPosY),Transform,Zlevel,Opacity)); //int Id, Position startPosition, int[] Transform, int Zlevel, int Opacity)
+                    System.out.println(collectionType+"-t hozunk létre");
+                    DynamicObjects.add(new People(tmpId, tmpPos, tmpTransform,tmpZlevel,tmpOpacity)); //int Id,  startPosition, int[] Transform, int Zlevel, int Opacity)
                 }
                     break;
                 case "trees":
-                    System.out.println(name+"-t hozunk létre");
-                    DynamicObjects.add(new Tree(tmpId, new Environment.Position(tmpPosX,tmpPosY),Transform,Zlevel,Opacity));
+                    System.out.println(collectionType+"-t hozunk létre");
+                    DynamicObjects.add(new Tree(tmpId, tmpPos, tmpTransform,tmpZlevel,tmpOpacity));
                     break;
                 case "parking":
-                    switch (tmpType)
+                    switch (collection)
                     {
-                        case "svg":
-                        System.out.println(name + " táblát hozunk létre");
+                        case "road_signs":
+                        System.out.println(collectionType + " táblát hozunk létre");
+                            switch (elementType) {
+                                case "314_10_.svg":
+                                    DynamicObjects.add(new ParkingSign(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, ParkingSign.ParkingType.ParkingLeft));
+                                    break;
+                                case "314_20_.svg":
+                                    DynamicObjects.add(new ParkingSign(tmpId,tmpPos,tmpTransform,tmpZlevel,tmpOpacity, ParkingSign.ParkingType.ParkingRight));
+                                    break;
+                            }
                             break;
-                        case "image":
-                            System.out.println(name + " elemet hozunk létre");
+                        case "misc":
+                            System.out.println(collectionType + " elemet hozunk létre");
+                            switch (elementType) {
+                                case "parking_0.svg":
+                                    DynamicObjects.add(new Parking(tmpId,tmpPos,tmpTransform,tmpZlevel,tmpOpacity, Parking.ParkingElement.ParallelParking));
+                                    break;
+                                case "parking_90.svg":
+                                    DynamicObjects.add(new Parking(tmpId,tmpPos,tmpTransform,tmpZlevel,tmpOpacity, Parking.ParkingElement.PerpendicularParkinng));
+                                    break;
+                                case "parking_bollard.pix":
+                                    DynamicObjects.add(new Parking(tmpId,tmpPos,tmpTransform,tmpZlevel,tmpOpacity, Parking.ParkingElement.PerpendicularParkinng));
+                                    break;
+                            }
+
                             break;
                     }
-
-
                     break;
+               //road_signs mappában lévők kivéve a parking-ot
+                case "direction":
+                    System.out.println(collectionType+"-t hozunk létre");
+                    break;
+                case "priority":
+                    System.out.println(collectionType+"-t hozunk létre");
+                    break;
+                case "speed":
+                    System.out.println(collectionType+"-t hozunk létre");
+                    break;
+                //road_tiles mappában lévők
                 case "2_lane_simple":
-                    System.out.println(name+"-t hozunk létre");
+                    System.out.println(collectionType+"-t hozunk létre");
                     break;
                 case "2_lane_advanced":
-                    System.out.println(name+"-t hozunk létre");
+                    System.out.println(collectionType+"-t hozunk létre");
                     break;
-                case "crosswalks":
-                    System.out.println(name+"-t hozunk létre");
-                    break;
-                case "direction":
-                    System.out.println(name+"-t hozunk létre");
-                    break;
+
             }
     }
 

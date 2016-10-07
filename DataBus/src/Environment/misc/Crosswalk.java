@@ -1,6 +1,5 @@
 package Environment.misc;
 
-import Environment.Position;
 import Environment.WorldObject;
 
 /**
@@ -8,7 +7,7 @@ import Environment.WorldObject;
  */
 public class Crosswalk extends WorldObject{
 
-    public Crosswalk(int Id, Position startPosition, int[] Transform, int Zlevel, int Opacity) {
+    public Crosswalk(int Id, int[] startPosition, double[] Transform, int Zlevel, int Opacity) {
         super(Id, startPosition, Transform, Zlevel, Opacity);
     }
 }

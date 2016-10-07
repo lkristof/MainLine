@@ -1,6 +1,5 @@
 package Environment.misc;
 
-import Environment.Position;
 import Environment.WorldObject;
 
 /**
@@ -9,7 +8,7 @@ import Environment.WorldObject;
 public class People extends WorldObject {
 
 
-    public People(int Id, Position startPosition, int[] Transform, int Zlevel, int Opacity) {
+    public People(int Id, int[] startPosition, double[] Transform, int Zlevel, int Opacity) {
         super(Id, startPosition, Transform, Zlevel, Opacity);
     }
 

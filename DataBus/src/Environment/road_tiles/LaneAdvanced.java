@@ -1,6 +1,5 @@
 package Environment.road_tiles;
 
-import Environment.Position;
 import Environment.WorldObject;
 
 /**
@@ -12,8 +11,8 @@ public class LaneAdvanced extends WorldObject {
     public enum RoadPaintings3 {undefinied1,undefinied2}
     public enum LaneAdvancedType {CrossRoads,Rotary,TJunctionLeft,TJunctionRight}
 
-    public LaneAdvanced(int Id, Position startPosition,
-                        int[] Transform, int Zlevel, int Opacity) {
+    public LaneAdvanced(int Id, int[] startPosition,
+                        double[] Transform, int Zlevel, int Opacity) {
         super(Id, startPosition,
         Transform, Zlevel, Opacity);
     }

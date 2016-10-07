@@ -12,26 +12,16 @@ import java.util.ResourceBundle;
         private int id;
         public int getId() { return this.id; }
         public void setId(int id) { this.id = id; }
-/*
-        //name
-        private String name;
-        public String getName() { return this.name; }
-        public void setName(String name) { this.name = name; }
 
-        //type
-        private int type;
-        public int getType() { return this.type; }
-        public void setType(int type) { this.type = type; }
-*/
         //position
-        private Position position;
-        public Position getPosition() { return this.position; }
-        public void setPosition(Position position) { this.position = position; }
+        private int[] position;
+        public int[] getPosition() { return this.position; }
+        public void setPosition(int[] position) { this.position = position; }
 
         //transform
-        private int[] transform;
-        public int[] getTransform() { return this.transform; }
-        public void setTransform(int[] transform) { this.transform = transform; }
+        private double[] transform;
+        public double[] getTransform() { return this.transform; }
+        public void setTransform(double[] transform) { this.transform = transform; }
 
         //zlevel
         private int zLevel;
@@ -47,7 +37,7 @@ import java.util.ResourceBundle;
         public boolean getCanStuckOnIt() { return this.canStuckOnIt; }
         public void setCanStuckOnIt(boolean canStuckOnIt) { this.canStuckOnIt = canStuckOnIt; }
 
-        public WorldObject(int Id, Position startPosition, int[] Transform, int Zlevel, int Opacity)
+        public WorldObject(int Id, int[] startPosition, double[] Transform, int Zlevel, int Opacity)
         {
             this.id = Id;
             this.position = startPosition;
