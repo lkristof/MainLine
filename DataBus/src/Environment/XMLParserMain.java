@@ -4,6 +4,9 @@ import Environment.*;
 import Environment.misc.*;
 
 import javax.swing.*;
+import javax.swing.text.*;
+import javax.swing.text.Position;
+import javax.xml.crypto.dsig.Transform;
 import javax.xml.stream.*;
 import java.io.File;
 import java.util.ArrayList;
@@ -44,14 +47,14 @@ public class XMLParserMain {
                             DynamicObjects = new ArrayList<>();
                         }
                         if ("Position".equals(streamReader.getLocalName())) {
-                            tmpPosX = Integer.parseInt(streamReader.getAttributeValue("","x"));
-                            tmpPosY = Integer.parseInt(streamReader.getAttributeValue("","y"));
+                            tmpPosX = (int)Math.round(Double.parseDouble(streamReader.getAttributeValue("","x")));
+                            tmpPosY = (int)Math.round(Double.parseDouble(streamReader.getAttributeValue("","y")));
                         }
                         if ("Transform".equals(streamReader.getLocalName())) {
-                            Transform[0] = Integer.parseInt(streamReader.getAttributeValue("","m21"));
-                            Transform[1] = Integer.parseInt(streamReader.getAttributeValue("","m11"));
-                            Transform[2] = Integer.parseInt(streamReader.getAttributeValue("","m22"));
-                            Transform[3] = Integer.parseInt(streamReader.getAttributeValue("","m12"));
+                            Transform[0] = (int)Math.round(Double.parseDouble(streamReader.getAttributeValue("","m21")));
+                            Transform[1] = (int)Math.round(Double.parseDouble(streamReader.getAttributeValue("","m11")));
+                            Transform[2] = (int)Math.round(Double.parseDouble(streamReader.getAttributeValue("","m22")));
+                            Transform[3] = (int)Math.round(Double.parseDouble(streamReader.getAttributeValue("","m12")));
                         }
                         if ("ZLevel".equals(streamReader.getLocalName())) {
                             Zlevel = Integer.parseInt(streamReader.getAttributeValue("","ZLevel"));
@@ -88,12 +91,12 @@ public class XMLParserMain {
             switch (name) {
                 case "people": {
                     System.out.println(name+"-t hozunk létre");
-                    DynamicObjects.add(new People(tmpId, null, null, tmpId, tmpId));
+                    DynamicObjects.add(new People(tmpId, new Environment.Position(tmpPosX,tmpPosY),Transform,Zlevel,Opacity)); //int Id, Position startPosition, int[] Transform, int Zlevel, int Opacity)
                 }
                     break;
                 case "trees":
                     System.out.println(name+"-t hozunk létre");
-                    DynamicObjects.add(new Tree(tmpId,null,null,tmpId,tmpId));
+                    DynamicObjects.add(new Tree(tmpId, new Environment.Position(tmpPosX,tmpPosY),Transform,Zlevel,Opacity));
                     break;
                 case "parking":
                     switch (tmpType)
