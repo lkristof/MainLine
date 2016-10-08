@@ -68,18 +68,18 @@ public class XMLParserMain {
                             }
                         }
                         if ("ParameterGroup".equals(streamReader.getLocalName()) &&
-                                streamReader.getAttributeValue("","name").equals("RoadPainting_1")) {
+                                streamReader.getAttributeValue("","name").equals("RoadPainting_2")) {
                             while (streamReader.hasNext() && "Parameter".equals(streamReader.getLocalName())) {
                                 if (streamReader.getAttributeValue("", "value").equals("true")) {
-                                    tmpParameter[2] = Integer.parseInt(streamReader.getAttributeValue("", "index"));
+                                    tmpParameter[1] = Integer.parseInt(streamReader.getAttributeValue("", "index"));
                                 }
                             }
                         }
                         if ("ParameterGroup".equals(streamReader.getLocalName()) &&
-                                streamReader.getAttributeValue("","name").equals("RoadPainting_1")) {
+                                streamReader.getAttributeValue("","name").equals("RoadPainting_3")) {
                             while (streamReader.hasNext() && "Parameter".equals(streamReader.getLocalName())) {
                                 if (streamReader.getAttributeValue("", "value").equals("true")) {
-                                    tmpParameter[3] = Integer.parseInt(streamReader.getAttributeValue("", "index"));
+                                    tmpParameter[2] = Integer.parseInt(streamReader.getAttributeValue("", "index"));
                                 }
                             }
                         }
