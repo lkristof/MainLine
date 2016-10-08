@@ -11,9 +11,23 @@ public class LaneSimple extends WorldObject{
     public enum RoadPaintings3 {undefinied1,undefinied2,undefinied3}
     public enum LaneSimpleType {Left45,Left65,Left90,Right45,Right65,Right90,Straight}
 
+    RoadPaintings1 roadPaintings1;
+    RoadPaintings2 roadPaintings2;
+    RoadPaintings3 roadPaintings3;
+    LaneSimpleType laneSimpleType;
+
     public LaneSimple(int Id, int[] startPosition,
-                      double[] Transform, int Zlevel, int Opacity) {
-            super(Id, startPosition,
-            Transform, Zlevel, Opacity);
+                      double[] Transform, int Zlevel, int Opacity, RoadPaintings1 roadPaintings1, RoadPaintings2 roadPaintings2,
+                      RoadPaintings3 roadPaintings3, LaneSimpleType laneSimpleType) {
+        super(Id, startPosition, Transform, Zlevel, Opacity);
+        this.roadPaintings1 = roadPaintings1;
+        this.roadPaintings2 = roadPaintings2;
+        this.roadPaintings3 = roadPaintings3;
+        this.laneSimpleType = laneSimpleType;
+    }
+
+    @Override
+    public String toString() {
+        return roadPaintings1.toString() + " " + roadPaintings2.toString() + " " + roadPaintings3.toString() + " " + laneSimpleType.toString();
     }
 }
