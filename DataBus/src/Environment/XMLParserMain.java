@@ -22,6 +22,7 @@ public class XMLParserMain {
     private double[] tmpTransform = new double[4];
     private int tmpZlevel;
     private int tmpOpacity;
+    private String[] tmpParameter = new String[3];
 
 
     public boolean Parser() throws XMLStreamException {
@@ -55,8 +56,13 @@ public class XMLParserMain {
                         if ("Opacity".equals(streamReader.getLocalName())) {
                             tmpOpacity = Integer.parseInt(streamReader.getAttributeValue("", "Opacity"));
                         }
-
-
+                        if ("ParameterGroup".equals(streamReader.getLocalName()) &&
+                                streamReader.getAttributeValue("","name").equals("RoadPainting_1")) {
+                            while (streamReader.hasNext() && "Parameter".equals(streamReader.getLocalName()))
+                                if (streamReader.getAttributeValue("", "value").equals("true")) {
+                                    tmpParameter[0] = streamReader.getAttributeValue("", "value");
+                                }
+                        }
                         break;
                     case XMLStreamConstants.END_ELEMENT:
                         if ("Object".equals(streamReader.getLocalName())){
