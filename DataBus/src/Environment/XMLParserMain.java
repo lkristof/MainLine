@@ -44,10 +44,10 @@ public class XMLParserMain {
                             tmpPos[1] = (int)Math.round(Double.parseDouble(streamReader.getAttributeValue("","y")));
                         }
                         if ("Transform".equals(streamReader.getLocalName())) {
-                            tmpTransform[0] = (int)Math.round(Double.parseDouble(streamReader.getAttributeValue("","m21")));
-                            tmpTransform[1] = (int)Math.round(Double.parseDouble(streamReader.getAttributeValue("","m11")));
-                            tmpTransform[2] = (int)Math.round(Double.parseDouble(streamReader.getAttributeValue("","m22")));
-                            tmpTransform[3] = (int)Math.round(Double.parseDouble(streamReader.getAttributeValue("","m12")));
+                            tmpTransform[0] = Double.parseDouble(streamReader.getAttributeValue("","m21"));
+                            tmpTransform[1] = Double.parseDouble(streamReader.getAttributeValue("","m11"));
+                            tmpTransform[2] = Double.parseDouble(streamReader.getAttributeValue("","m22"));
+                            tmpTransform[3] = Double.parseDouble(streamReader.getAttributeValue("","m12"));
                         }
                         if ("ZLevel".equals(streamReader.getLocalName())) {
                             tmpZlevel = Integer.parseInt(streamReader.getAttributeValue("","ZLevel"));
