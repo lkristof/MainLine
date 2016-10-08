@@ -1,9 +1,11 @@
 package Environment;
 
 import Environment.misc.*;
-import Environment.road_signs.ParkingSign;
+import Environment.road_signs.*;
+import Environment.road_tiles.LaneSimple;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import javax.xml.stream.*;
 import java.io.File;
 import java.util.ArrayList;
@@ -23,6 +25,7 @@ public class XMLParserMain {
     private double[] tmpTransform = new double[4];
     private int tmpZlevel;
     private int tmpOpacity;
+    private int[] tmpParameter = new int[3];
 
 
     public boolean Parser() throws XMLStreamException {
@@ -45,10 +48,10 @@ public class XMLParserMain {
                             tmpPos[1] = (int)Math.round(Double.parseDouble(streamReader.getAttributeValue("","y")));
                         }
                         if ("Transform".equals(streamReader.getLocalName())) {
-                            tmpTransform[0] = (int)Math.round(Double.parseDouble(streamReader.getAttributeValue("","m21")));
-                            tmpTransform[1] = (int)Math.round(Double.parseDouble(streamReader.getAttributeValue("","m11")));
-                            tmpTransform[2] = (int)Math.round(Double.parseDouble(streamReader.getAttributeValue("","m22")));
-                            tmpTransform[3] = (int)Math.round(Double.parseDouble(streamReader.getAttributeValue("","m12")));
+                            tmpTransform[0] = Double.parseDouble(streamReader.getAttributeValue("","m21"));
+                            tmpTransform[1] = Double.parseDouble(streamReader.getAttributeValue("","m11"));
+                            tmpTransform[2] = Double.parseDouble(streamReader.getAttributeValue("","m22"));
+                            tmpTransform[3] = Double.parseDouble(streamReader.getAttributeValue("","m12"));
                         }
                         if ("ZLevel".equals(streamReader.getLocalName())) {
                             tmpZlevel = Integer.parseInt(streamReader.getAttributeValue("","ZLevel"));
@@ -56,8 +59,30 @@ public class XMLParserMain {
                         if ("Opacity".equals(streamReader.getLocalName())) {
                             tmpOpacity = Integer.parseInt(streamReader.getAttributeValue("", "Opacity"));
                         }
-
-
+                        if ("ParameterGroup".equals(streamReader.getLocalName()) &&
+                                streamReader.getAttributeValue("","name").equals("RoadPainting_1")) {
+                            while (streamReader.hasNext() && "Parameter".equals(streamReader.getLocalName())) {
+                                if (streamReader.getAttributeValue("", "value").equals("true")) {
+                                    tmpParameter[0] = Integer.parseInt(streamReader.getAttributeValue("", "index"));
+                                }
+                            }
+                        }
+                        if ("ParameterGroup".equals(streamReader.getLocalName()) &&
+                                streamReader.getAttributeValue("","name").equals("RoadPainting_2")) {
+                            while (streamReader.hasNext() && "Parameter".equals(streamReader.getLocalName())) {
+                                if (streamReader.getAttributeValue("", "value").equals("true")) {
+                                    tmpParameter[1] = Integer.parseInt(streamReader.getAttributeValue("", "index"));
+                                }
+                            }
+                        }
+                        if ("ParameterGroup".equals(streamReader.getLocalName()) &&
+                                streamReader.getAttributeValue("","name").equals("RoadPainting_3")) {
+                            while (streamReader.hasNext() && "Parameter".equals(streamReader.getLocalName())) {
+                                if (streamReader.getAttributeValue("", "value").equals("true")) {
+                                    tmpParameter[2] = Integer.parseInt(streamReader.getAttributeValue("", "index"));
+                                }
+                            }
+                        }
                         break;
                     case XMLStreamConstants.END_ELEMENT:
                         if ("Object".equals(streamReader.getLocalName())){
@@ -104,11 +129,11 @@ public class XMLParserMain {
                         case "road_signs":
                         System.out.println(collectionType + " táblát hozunk létre");
                             switch (elementType) {
-                                case "314_10_.svg":
-                                    DynamicObjects.add(new ParkingSign(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, ParkingSign.ParkingType.ParkingLeft));
+                                case "314_10_.svg": //bal
+                                    DynamicObjects.add(new ParkingSign(tmpId,tmpPos,tmpTransform,tmpZlevel,tmpOpacity, ParkingSign.ParkingSignType.ParkingLeft));
                                     break;
-                                case "314_20_.svg":
-                                    DynamicObjects.add(new ParkingSign(tmpId,tmpPos,tmpTransform,tmpZlevel,tmpOpacity, ParkingSign.ParkingType.ParkingRight));
+                                case "314_20_.svg": //jobb
+                                    DynamicObjects.add((new ParkingSign(tmpId,tmpPos,tmpTransform,tmpZlevel,tmpOpacity, ParkingSign.ParkingSignType.ParkingRight)));
                                     break;
                             }
                             break;
@@ -142,6 +167,30 @@ public class XMLParserMain {
                 //road_tiles mappában lévők
                 case "2_lane_simple":
                     System.out.println(collectionType+"-t hozunk létre");
+                    switch (elementType) {
+                        case "2_simple_45l.tile":
+                            DynamicObjects.add(new LaneSimple(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, LaneSimple.RoadPaintings1.values()[tmpParameter[0]], LaneSimple.RoadPaintings2.values()[tmpParameter[1]], LaneSimple.RoadPaintings3.values()[tmpParameter[2]], LaneSimple.LaneSimpleType.Left45));
+                            break;
+                        case "2_simple_45r.tile":
+                            DynamicObjects.add(new LaneSimple(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, LaneSimple.RoadPaintings1.values()[tmpParameter[0]], LaneSimple.RoadPaintings2.values()[tmpParameter[1]], LaneSimple.RoadPaintings3.values()[tmpParameter[2]], LaneSimple.LaneSimpleType.Right45));
+                            break;
+                        case "2_simple_65l.tile":
+                            DynamicObjects.add(new LaneSimple(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, LaneSimple.RoadPaintings1.values()[tmpParameter[0]], LaneSimple.RoadPaintings2.values()[tmpParameter[1]], LaneSimple.RoadPaintings3.values()[tmpParameter[2]], LaneSimple.LaneSimpleType.Left65));
+                            break;
+                        case "2_simple_65r.tile":
+                            DynamicObjects.add(new LaneSimple(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, LaneSimple.RoadPaintings1.values()[tmpParameter[0]], LaneSimple.RoadPaintings2.values()[tmpParameter[1]], LaneSimple.RoadPaintings3.values()[tmpParameter[2]], LaneSimple.LaneSimpleType.Right65));
+                            break;
+                        case "2_simple_90l.tile":
+                            DynamicObjects.add(new LaneSimple(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, LaneSimple.RoadPaintings1.values()[tmpParameter[0]], LaneSimple.RoadPaintings2.values()[tmpParameter[1]], LaneSimple.RoadPaintings3.values()[tmpParameter[2]], LaneSimple.LaneSimpleType.Left90));
+                            break;
+                        case "2_simple_90r.tile":
+                            DynamicObjects.add(new LaneSimple(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, LaneSimple.RoadPaintings1.values()[tmpParameter[0]], LaneSimple.RoadPaintings2.values()[tmpParameter[1]], LaneSimple.RoadPaintings3.values()[tmpParameter[2]], LaneSimple.LaneSimpleType.Right90));
+                            break;
+                        case "2_simple_s.tile":
+                            DynamicObjects.add(new LaneSimple(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, LaneSimple.RoadPaintings1.values()[tmpParameter[0]], LaneSimple.RoadPaintings2.values()[tmpParameter[1]], LaneSimple.RoadPaintings3.values()[tmpParameter[2]], LaneSimple.LaneSimpleType.Straight));
+                            break;
+                    }
+                    System.out.println((DynamicObjects.get(DynamicObjects.size()-1).toString()));
                     break;
                 case "2_lane_advanced":
                     System.out.println(collectionType+"-t hozunk létre");
