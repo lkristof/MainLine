@@ -11,19 +11,26 @@ public class LaneSimple extends WorldObject{
     public enum RoadPaintings3 {undefinied1,undefinied2,undefinied3}
     public enum LaneSimpleType {Left45,Left65,Left90,Right45,Right65,Right90,Straight}
 
+    String[] roadColor1;
+    String[] roadColor2;
+    String[] roadColor3;
+
     RoadPaintings1 roadPaintings1;
     RoadPaintings2 roadPaintings2;
     RoadPaintings3 roadPaintings3;
     LaneSimpleType laneSimpleType;
 
     public LaneSimple(int Id, int[] startPosition,
-                      double[] Transform, int Zlevel, int Opacity, RoadPaintings1 roadPaintings1, RoadPaintings2 roadPaintings2,
+                      double[] Transform, int Zlevel, int Opacity, String[] roadColor1, String[] roadColor2, String[] roadColor3, RoadPaintings1 roadPaintings1, RoadPaintings2 roadPaintings2,
                       RoadPaintings3 roadPaintings3, LaneSimpleType laneSimpleType) {
         super(Id, startPosition, Transform, Zlevel, Opacity);
         this.roadPaintings1 = roadPaintings1;
         this.roadPaintings2 = roadPaintings2;
         this.roadPaintings3 = roadPaintings3;
         this.laneSimpleType = laneSimpleType;
+        this.roadColor1 = roadColor1;
+        this.roadColor2 = roadColor2;
+        this.roadColor3 = roadColor3;
     }
 
     @Override
