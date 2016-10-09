@@ -4,7 +4,6 @@ import Environment.misc.*;
 import Environment.road_signs.*;
 import Environment.road_tiles.LaneAdvanced;
 import Environment.road_tiles.LaneSimple;
-
 import javax.swing.*;
 import javax.xml.stream.*;
 import java.io.File;
@@ -113,6 +112,8 @@ public class XMLParserMain {
                                 case "RoadPainting_3":
                                     parameterGroupName = "RoadPainting_3";
                                     break;
+                                default:
+                                    parameterGroupName = "";
                             }
                         }
                         if("Parameter".equals(streamReader.getLocalName()))
@@ -154,6 +155,10 @@ public class XMLParserMain {
                                         tmpRoadPaintingName3 = streamReader.getAttributeValue("", "name");
                                         System.out.println("RoadPainting_3 true parameter:   " + tmpRoadPaintingName3);
                                     }
+                                    break;
+                                case "":
+                                    break;
+                                default:
                                     break;
                             }
                         }
