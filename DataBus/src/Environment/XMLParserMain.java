@@ -17,6 +17,12 @@ public class XMLParserMain {
 
     private XMLInputFactory factory;
     private XMLStreamReader streamReader;
+    private int sceneHeihgt;
+    private int sceneWidth;
+    private int sceneMeasureType;
+    private String sceneColor;
+    public Scene scene;
+
     private int tmpId;
     private String tmpName;
     private String parameterGroupName;
@@ -46,6 +52,13 @@ public class XMLParserMain {
                         if ("Object".equals(streamReader.getLocalName())) {
                             tmpName = streamReader.getAttributeValue("", "name");
                             tmpId = Integer.parseInt(streamReader.getAttributeValue("", "id"));
+                        }
+                        if ("Scene".equals(streamReader.getLocalName()))
+                        {
+                            sceneWidth = Integer.parseInt(streamReader.getAttributeValue("","width"));
+                            sceneHeihgt = Integer.parseInt(streamReader.getAttributeValue("","height"));
+                            sceneMeasureType = Integer.parseInt(streamReader.getAttributeValue("","measureType"));
+                            sceneColor = streamReader.getAttributeValue("","color");
                         }
                         if ("Objects".equals(streamReader.getLocalName())) {
                             DynamicObjects = new ArrayList<>();
@@ -173,6 +186,9 @@ public class XMLParserMain {
                                 streamReader.close();
                                 return false;
                             }
+                        }
+                        if ("Scene".equals(streamReader.getLocalName())){
+                            scene = new Scene(sceneWidth,sceneHeihgt,sceneMeasureType,sceneColor);
                         }
                         break;
 
