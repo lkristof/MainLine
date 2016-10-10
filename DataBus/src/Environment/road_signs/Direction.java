@@ -7,7 +7,7 @@ import Environment.WorldObject;
  */
 public class Direction extends WorldObject {
     public Direction(int Id, int[] startPosition, double[] Transform, int Zlevel, int Opacity, DirectionType directionType) {
-        super(Id, startPosition, Transform, Zlevel, Opacity);
+        super(Id, startPosition, 80, 80, Transform, Zlevel, Opacity, false);
         this.directionType = directionType;
     }
 

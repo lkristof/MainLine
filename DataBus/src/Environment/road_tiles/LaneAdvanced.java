@@ -19,8 +19,8 @@ public class LaneAdvanced extends WorldObject {
     int[] roadColor2;
     int[] roadColor3;
 
-    public LaneAdvanced(int Id, int[] startPosition, double[] Transform, int Zlevel, int Opacity, int[] roadColor1, int[] roadColor2, int[] roadColor3, RoadPaintings1 roadPaintings1, RoadPaintings2 roadPaintings2, RoadPaintings3 roadPaintings3, LaneAdvancedType laneAdvancedType) {
-        super(Id, startPosition, Transform, Zlevel, Opacity);
+    public LaneAdvanced(int Id, int[] startPosition, int Width, int Height, double[] Transform, int Zlevel, int Opacity, int[] roadColor1, int[] roadColor2, int[] roadColor3, RoadPaintings1 roadPaintings1, RoadPaintings2 roadPaintings2, RoadPaintings3 roadPaintings3, LaneAdvancedType laneAdvancedType) {
+        super(Id, startPosition, Width, Height, Transform, Zlevel, Opacity, false);
         this.roadPaintings1 = roadPaintings1;
         this.roadPaintings2 = roadPaintings2;
         this.roadPaintings3 = roadPaintings3;

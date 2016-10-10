@@ -22,10 +22,11 @@ public class LaneSimple extends WorldObject{
     RoadPaintings3 roadPaintings3;
     LaneSimpleType laneSimpleType;
 
-    public LaneSimple(int Id, int[] startPosition,
+    public LaneSimple(int Id, int[] startPosition, int Width, int Height,
                       double[] Transform, int Zlevel, int Opacity, int[] roadColor1, int[] roadColor2, int[] roadColor3, RoadPaintings1 roadPaintings1, RoadPaintings2 roadPaintings2,
                       RoadPaintings3 roadPaintings3, LaneSimpleType laneSimpleType) {
-        super(Id, startPosition, Transform, Zlevel, Opacity);
+        super(Id, startPosition, Width, Height, Transform, Zlevel, Opacity, false);
+
         this.roadPaintings1 = roadPaintings1;
         this.roadPaintings2 = roadPaintings2;
         this.roadPaintings3 = roadPaintings3;

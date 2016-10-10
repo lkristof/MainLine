@@ -18,6 +18,14 @@ import java.util.ResourceBundle;
         public int[] getPosition() { return this.position; }
         public void setPosition(int[] position) { this.position = position; }
 
+        private int width;
+        public int getWidth() { return this.width; }
+        public void setWidth(int width) { this.width = width; }
+
+        private int height;
+        public int getHeight() { return this.height; }
+        public void setHeigth(int height) { this.height = height; }
+
         //transform
         private double[] transform;
         public double[] getTransform() { return this.transform; }
@@ -37,12 +45,15 @@ import java.util.ResourceBundle;
         public boolean getCanStuckOnIt() { return this.canStuckOnIt; }
         public void setCanStuckOnIt(boolean canStuckOnIt) { this.canStuckOnIt = canStuckOnIt; }
 
-        public WorldObject(int Id, int[] startPosition, double[] Transform, int Zlevel, int Opacity)
+        public WorldObject(int Id, int[] startPosition, int width, int height, double[] Transform, int Zlevel, int Opacity, boolean CanStuckOnIt)
         {
             this.id = Id;
             this.position = startPosition;
+            this.width = width;
+            this.height = height;
             this.transform = Transform;
             this.zLevel = Zlevel;
             this.opacity = Opacity;
+            this.canStuckOnIt = CanStuckOnIt;
         }
 }

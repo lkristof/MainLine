@@ -7,7 +7,7 @@ import Environment.WorldObject;
  */
 public class Priority extends WorldObject {
     public Priority(int Id, int[] startPosition, double[] Transform, int Zlevel, int Opacity, PriorityType priorityType) {
-        super(Id, startPosition, Transform, Zlevel, Opacity);
+        super(Id, startPosition, 80, 80, Transform, Zlevel, Opacity, false);
         this.priorityType = priorityType;
     }
 

@@ -8,8 +8,10 @@ import Environment.WorldObject;
 public class People extends WorldObject {
 
 
+    int Width = 80;
+    int Height = 80;
     public People(int Id, int[] startPosition, double[] Transform, int Zlevel, int Opacity) {
-        super(Id, startPosition, Transform, Zlevel, Opacity);
+        super(Id, startPosition, 75, 80, Transform, Zlevel, Opacity, true);
     }
 
 

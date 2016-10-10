@@ -237,13 +237,13 @@ public class XMLParserMain {
                             System.out.println(collectionType + " elemet hozunk létre");
                             switch (elementType) {
                                 case "parking_0.svg":
-                                    DynamicObjects.add(new Parking(tmpId,tmpPos,tmpTransform,tmpZlevel,tmpOpacity, Parking.ParkingElement.ParallelParking));
+                                    DynamicObjects.add(new Parking(tmpId,tmpPos,150, 600, tmpTransform,tmpZlevel,tmpOpacity, Parking.ParkingElement.ParallelParking, false));
                                     break;
                                 case "parking_90.svg":
-                                    DynamicObjects.add(new Parking(tmpId,tmpPos,tmpTransform,tmpZlevel,tmpOpacity, Parking.ParkingElement.PerpendicularParkinng));
+                                    DynamicObjects.add(new Parking(tmpId,tmpPos,300, 460, tmpTransform,tmpZlevel,tmpOpacity, Parking.ParkingElement.PerpendicularParking, false));
                                     break;
                                 case "parking_bollard.pix":
-                                    DynamicObjects.add(new Parking(tmpId,tmpPos,tmpTransform,tmpZlevel,tmpOpacity, Parking.ParkingElement.PerpendicularParkinng));
+                                    DynamicObjects.add(new Parking(tmpId,tmpPos,80 ,75, tmpTransform,tmpZlevel,tmpOpacity, Parking.ParkingElement.Bollard, true));
                                     break;
                             }
 
@@ -265,25 +265,25 @@ public class XMLParserMain {
                     System.out.println(collectionType+"-t hozunk létre");
                     switch (elementType) {
                         case "2_simple_45l.tile":
-                            DynamicObjects.add(new LaneSimple(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, tmpRoadColor1, tmpRoadColor2, tmpRoadColor3, LaneSimple.RoadPaintings1.valueOf(tmpRoadPaintingName1), LaneSimple.RoadPaintings2.valueOf(tmpRoadPaintingName2), LaneSimple.RoadPaintings3.valueOf(tmpRoadPaintingName3),LaneSimple.LaneSimpleType.Left45));
+                            DynamicObjects.add(new LaneSimple(tmpId, tmpPos, 390, 370, tmpTransform, tmpZlevel, tmpOpacity, tmpRoadColor1, tmpRoadColor2, tmpRoadColor3, LaneSimple.RoadPaintings1.valueOf(tmpRoadPaintingName1), LaneSimple.RoadPaintings2.valueOf(tmpRoadPaintingName2), LaneSimple.RoadPaintings3.valueOf(tmpRoadPaintingName3),LaneSimple.LaneSimpleType.Left45));
                             break;
                         case "2_simple_45r.tile":
-                            DynamicObjects.add(new LaneSimple(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, tmpRoadColor1, tmpRoadColor2, tmpRoadColor3, LaneSimple.RoadPaintings1.valueOf(tmpRoadPaintingName1), LaneSimple.RoadPaintings2.valueOf(tmpRoadPaintingName2), LaneSimple.RoadPaintings3.valueOf(tmpRoadPaintingName3), LaneSimple.LaneSimpleType.Right45));
+                            DynamicObjects.add(new LaneSimple(tmpId, tmpPos, 390, 370, tmpTransform, tmpZlevel, tmpOpacity, tmpRoadColor1, tmpRoadColor2, tmpRoadColor3, LaneSimple.RoadPaintings1.valueOf(tmpRoadPaintingName1), LaneSimple.RoadPaintings2.valueOf(tmpRoadPaintingName2), LaneSimple.RoadPaintings3.valueOf(tmpRoadPaintingName3), LaneSimple.LaneSimpleType.Right45));
                             break;
                         case "2_simple_65l.tile":
-                            DynamicObjects.add(new LaneSimple(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, tmpRoadColor1, tmpRoadColor2, tmpRoadColor3, LaneSimple.RoadPaintings1.valueOf(tmpRoadPaintingName1), LaneSimple.RoadPaintings2.valueOf(tmpRoadPaintingName2), LaneSimple.RoadPaintings3.valueOf(tmpRoadPaintingName3), LaneSimple.LaneSimpleType.Left65));
+                            DynamicObjects.add(new LaneSimple(tmpId, tmpPos, 450, 475, tmpTransform, tmpZlevel, tmpOpacity, tmpRoadColor1, tmpRoadColor2, tmpRoadColor3, LaneSimple.RoadPaintings1.valueOf(tmpRoadPaintingName1), LaneSimple.RoadPaintings2.valueOf(tmpRoadPaintingName2), LaneSimple.RoadPaintings3.valueOf(tmpRoadPaintingName3), LaneSimple.LaneSimpleType.Left65));
                             break;
                         case "2_simple_65r.tile":
-                            DynamicObjects.add(new LaneSimple(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, tmpRoadColor1, tmpRoadColor2, tmpRoadColor3,LaneSimple.RoadPaintings1.valueOf(tmpRoadPaintingName1), LaneSimple.RoadPaintings2.valueOf(tmpRoadPaintingName2), LaneSimple.RoadPaintings3.valueOf(tmpRoadPaintingName3), LaneSimple.LaneSimpleType.Right65));
+                            DynamicObjects.add(new LaneSimple(tmpId, tmpPos, 450, 475, tmpTransform, tmpZlevel, tmpOpacity, tmpRoadColor1, tmpRoadColor2, tmpRoadColor3,LaneSimple.RoadPaintings1.valueOf(tmpRoadPaintingName1), LaneSimple.RoadPaintings2.valueOf(tmpRoadPaintingName2), LaneSimple.RoadPaintings3.valueOf(tmpRoadPaintingName3), LaneSimple.LaneSimpleType.Right65));
                             break;
                         case "2_simple_90l.tile":
-                            DynamicObjects.add(new LaneSimple(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, tmpRoadColor1, tmpRoadColor2, tmpRoadColor3, LaneSimple.RoadPaintings1.valueOf(tmpRoadPaintingName1), LaneSimple.RoadPaintings2.valueOf(tmpRoadPaintingName2), LaneSimple.RoadPaintings3.valueOf(tmpRoadPaintingName3), LaneSimple.LaneSimpleType.Left90));
+                            DynamicObjects.add(new LaneSimple(tmpId, tmpPos, 530, 530, tmpTransform, tmpZlevel, tmpOpacity, tmpRoadColor1, tmpRoadColor2, tmpRoadColor3, LaneSimple.RoadPaintings1.valueOf(tmpRoadPaintingName1), LaneSimple.RoadPaintings2.valueOf(tmpRoadPaintingName2), LaneSimple.RoadPaintings3.valueOf(tmpRoadPaintingName3), LaneSimple.LaneSimpleType.Left90));
                             break;
                         case "2_simple_90r.tile":
-                            DynamicObjects.add(new LaneSimple(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, tmpRoadColor1, tmpRoadColor2, tmpRoadColor3, LaneSimple.RoadPaintings1.valueOf(tmpRoadPaintingName1), LaneSimple.RoadPaintings2.valueOf(tmpRoadPaintingName2), LaneSimple.RoadPaintings3.valueOf(tmpRoadPaintingName3), LaneSimple.LaneSimpleType.Right90));
+                            DynamicObjects.add(new LaneSimple(tmpId, tmpPos, 530, 530, tmpTransform, tmpZlevel, tmpOpacity, tmpRoadColor1, tmpRoadColor2, tmpRoadColor3, LaneSimple.RoadPaintings1.valueOf(tmpRoadPaintingName1), LaneSimple.RoadPaintings2.valueOf(tmpRoadPaintingName2), LaneSimple.RoadPaintings3.valueOf(tmpRoadPaintingName3), LaneSimple.LaneSimpleType.Right90));
                             break;
                         case "2_simple_s.tile":
-                            DynamicObjects.add(new LaneSimple(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, tmpRoadColor1, tmpRoadColor2, tmpRoadColor3, LaneSimple.RoadPaintings1.valueOf(tmpRoadPaintingName1), LaneSimple.RoadPaintings2.valueOf(tmpRoadPaintingName2), LaneSimple.RoadPaintings3.valueOf(tmpRoadPaintingName3), LaneSimple.LaneSimpleType.Straight));
+                            DynamicObjects.add(new LaneSimple(tmpId, tmpPos, 350, 350, tmpTransform, tmpZlevel, tmpOpacity, tmpRoadColor1, tmpRoadColor2, tmpRoadColor3, LaneSimple.RoadPaintings1.valueOf(tmpRoadPaintingName1), LaneSimple.RoadPaintings2.valueOf(tmpRoadPaintingName2), LaneSimple.RoadPaintings3.valueOf(tmpRoadPaintingName3), LaneSimple.LaneSimpleType.Straight));
                             break;
                     }
                     System.out.println((DynamicObjects.get(DynamicObjects.size()-1).toString()));
@@ -293,19 +293,19 @@ public class XMLParserMain {
                     switch (elementType)
                     {
                         case "2_t_junction_l.tile":
-                            DynamicObjects.add(new LaneAdvanced(tmpId,tmpPos,tmpTransform,tmpZlevel,tmpOpacity,tmpRoadColor1,tmpRoadColor2,tmpRoadColor3, LaneAdvanced.RoadPaintings1.valueOf(tmpRoadPaintingName1),LaneAdvanced.RoadPaintings2.valueOf(tmpRoadPaintingName2),LaneAdvanced.RoadPaintings3.valueOf(tmpRoadPaintingName3),LaneAdvanced.LaneAdvancedType.TJunctionLeft));
+                            DynamicObjects.add(new LaneAdvanced(tmpId,tmpPos, 890, 1400, tmpTransform,tmpZlevel,tmpOpacity,tmpRoadColor1,tmpRoadColor2,tmpRoadColor3, LaneAdvanced.RoadPaintings1.valueOf(tmpRoadPaintingName1),LaneAdvanced.RoadPaintings2.valueOf(tmpRoadPaintingName2),LaneAdvanced.RoadPaintings3.valueOf(tmpRoadPaintingName3),LaneAdvanced.LaneAdvancedType.TJunctionLeft));
                             System.out.println("t_junction left");
                             break;
                         case "2_t_junction_r.tile":
-                            DynamicObjects.add(new LaneAdvanced(tmpId,tmpPos,tmpTransform,tmpZlevel,tmpOpacity,tmpRoadColor1,tmpRoadColor2,tmpRoadColor3, LaneAdvanced.RoadPaintings1.valueOf(tmpRoadPaintingName1),LaneAdvanced.RoadPaintings2.valueOf(tmpRoadPaintingName2),LaneAdvanced.RoadPaintings3.valueOf(tmpRoadPaintingName3),LaneAdvanced.LaneAdvancedType.TJunctionRight));
+                            DynamicObjects.add(new LaneAdvanced(tmpId,tmpPos, 890, 1400, tmpTransform,tmpZlevel,tmpOpacity,tmpRoadColor1,tmpRoadColor2,tmpRoadColor3, LaneAdvanced.RoadPaintings1.valueOf(tmpRoadPaintingName1),LaneAdvanced.RoadPaintings2.valueOf(tmpRoadPaintingName2),LaneAdvanced.RoadPaintings3.valueOf(tmpRoadPaintingName3),LaneAdvanced.LaneAdvancedType.TJunctionRight));
                             System.out.println("t_junction right");
                             break;
                         case "2_rotary.tile":
-                            DynamicObjects.add(new LaneAdvanced(tmpId,tmpPos,tmpTransform,tmpZlevel,tmpOpacity,tmpRoadColor1,tmpRoadColor2,tmpRoadColor3, LaneAdvanced.RoadPaintings1.valueOf(tmpRoadPaintingName1),LaneAdvanced.RoadPaintings2.valueOf(tmpRoadPaintingName2),LaneAdvanced.RoadPaintings3.valueOf(tmpRoadPaintingName3),LaneAdvanced.LaneAdvancedType.Rotary));
+                            DynamicObjects.add(new LaneAdvanced(tmpId,tmpPos, 1400, 1400, tmpTransform,tmpZlevel,tmpOpacity,tmpRoadColor1,tmpRoadColor2,tmpRoadColor3, LaneAdvanced.RoadPaintings1.valueOf(tmpRoadPaintingName1),LaneAdvanced.RoadPaintings2.valueOf(tmpRoadPaintingName2),LaneAdvanced.RoadPaintings3.valueOf(tmpRoadPaintingName3),LaneAdvanced.LaneAdvancedType.Rotary));
                             System.out.println("rotary");
                             break;
                         case "2_crossroads_2.tile":
-                            DynamicObjects.add(new LaneAdvanced(tmpId,tmpPos,tmpTransform,tmpZlevel,tmpOpacity,tmpRoadColor1,tmpRoadColor2,tmpRoadColor3, LaneAdvanced.RoadPaintings1.valueOf(tmpRoadPaintingName1),LaneAdvanced.RoadPaintings2.valueOf(tmpRoadPaintingName2),LaneAdvanced.RoadPaintings3.valueOf(tmpRoadPaintingName3),LaneAdvanced.LaneAdvancedType.CrossRoads));
+                            DynamicObjects.add(new LaneAdvanced(tmpId,tmpPos, 1400, 1400, tmpTransform,tmpZlevel,tmpOpacity,tmpRoadColor1,tmpRoadColor2,tmpRoadColor3, LaneAdvanced.RoadPaintings1.valueOf(tmpRoadPaintingName1),LaneAdvanced.RoadPaintings2.valueOf(tmpRoadPaintingName2),LaneAdvanced.RoadPaintings3.valueOf(tmpRoadPaintingName3),LaneAdvanced.LaneAdvancedType.CrossRoads));
                             System.out.println("crossroads");
                             break;
 

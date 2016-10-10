@@ -8,6 +8,6 @@ import Environment.WorldObject;
 public class Crosswalk extends WorldObject{
 
     public Crosswalk(int Id, int[] startPosition, double[] Transform, int Zlevel, int Opacity) {
-        super(Id, startPosition, Transform, Zlevel, Opacity);
+        super(Id, startPosition, 350, 190, Transform, Zlevel, Opacity, false);
     }
 }
