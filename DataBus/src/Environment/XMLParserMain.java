@@ -49,37 +49,18 @@ public class XMLParserMain {
                 int event = streamReader.next();
                 switch (event) {
                     case XMLStreamConstants.START_ELEMENT:
-                        if ("Object".equals(streamReader.getLocalName())) {
-                            tmpName = streamReader.getAttributeValue("", "name");
-                            tmpId = Integer.parseInt(streamReader.getAttributeValue("", "id"));
+                        objectCase();
+                        sceneCase();
+                        checkIfEqual();
+
+                        if ("ParameterGroup".equals(streamReader.getLocalName())) {
+                            parameterGroupSwitch();
                         }
-                        if ("Scene".equals(streamReader.getLocalName()))
+                        if("Parameter".equals(streamReader.getLocalName()))
                         {
-                            sceneWidth = Integer.parseInt(streamReader.getAttributeValue("","width"));
-                            sceneHeihgt = Integer.parseInt(streamReader.getAttributeValue("","height"));
-                            sceneMeasureType = Integer.parseInt(streamReader.getAttributeValue("","measureType"));
-                            sceneColor = streamReader.getAttributeValue("","color");
-                        }
-                        if ("Objects".equals(streamReader.getLocalName())) {
-                            DynamicObjects = new ArrayList<>();
-                        }
-                        if ("Position".equals(streamReader.getLocalName())) {
-                            tmpPos[0] = (int) Math.round(Double.parseDouble(streamReader.getAttributeValue("", "x")));
-                            tmpPos[1] = (int) Math.round(Double.parseDouble(streamReader.getAttributeValue("", "y")));
-                        }
-                        if ("Transform".equals(streamReader.getLocalName())) {
-                            tmpTransform[0] = Double.parseDouble(streamReader.getAttributeValue("", "m21"));
-                            tmpTransform[1] = Double.parseDouble(streamReader.getAttributeValue("", "m11"));
-                            tmpTransform[2] = Double.parseDouble(streamReader.getAttributeValue("", "m22"));
-                            tmpTransform[3] = Double.parseDouble(streamReader.getAttributeValue("", "m12"));
-                        }
-                        if ("ZLevel".equals(streamReader.getLocalName())) {
-                            tmpZlevel = Integer.parseInt(streamReader.getAttributeValue("", "ZLevel"));
-                        }
-                        if ("Opacity".equals(streamReader.getLocalName())) {
-                            tmpOpacity = Integer.parseInt(streamReader.getAttributeValue("", "Opacity"));
-                        }
-                        /*
+                            parameterSwitch();
+
+                            /*
                         if ("ParameterGroup".equals(streamReader.getLocalName()) &&
                                 streamReader.getAttributeValue("","name").equals("RoadPainting_1")) {
                             while (streamReader.hasNext() && "Parameter".equals(streamReader.getLocalName())) {
@@ -105,91 +86,15 @@ public class XMLParserMain {
                             }
                         }
                         */
-                        if ("ParameterGroup".equals(streamReader.getLocalName())) {
-                            switch (streamReader.getAttributeValue("", "name")) {
-                                case "RoadColor_1":
-                                    parameterGroupName = "RoadColor_1";
-                                    break;
-                                case "RoadColor_2":
-                                    parameterGroupName = "RoadColor_2";
-                                    break;
-                                case "RoadColor_3":
-                                    parameterGroupName = "RoadColor_3";
-                                    break;
-                                case "RoadPainting_1":
-                                     parameterGroupName = "RoadPainting_1";
-                                    break;
-                                case "RoadPainting_2":
-                                    parameterGroupName = "RoadPainting_2";
-                                    break;
-                                case "RoadPainting_3":
-                                    parameterGroupName = "RoadPainting_3";
-                                    break;
-                                default:
-                                    parameterGroupName = "";
-                            }
-                        }
-                        if("Parameter".equals(streamReader.getLocalName()))
-                        {
-                            switch (parameterGroupName)
-                            {
-                                case "RoadColor_1":
-                                    tmpRoadColor1[0] = Integer.parseInt(streamReader.getAttributeValue("", "r"));
-                                    tmpRoadColor1[1] = Integer.parseInt(streamReader.getAttributeValue("", "g"));
-                                    tmpRoadColor1[2] = Integer.parseInt(streamReader.getAttributeValue("", "b"));
-                                    tmpRoadColor1[3] = Integer.parseInt(streamReader.getAttributeValue("", "a"));
-                                    break;
-                                case "RoadColor_2":
-                                    tmpRoadColor2[0] = Integer.parseInt(streamReader.getAttributeValue("", "r"));
-                                    tmpRoadColor2[1] = Integer.parseInt(streamReader.getAttributeValue("", "g"));
-                                    tmpRoadColor2[2] = Integer.parseInt(streamReader.getAttributeValue("", "b"));
-                                    tmpRoadColor2[3] = Integer.parseInt(streamReader.getAttributeValue("", "a"));
-                                    break;
-                                case "RoadColor_3":
-                                    tmpRoadColor3[0] = Integer.parseInt(streamReader.getAttributeValue("", "r"));
-                                    tmpRoadColor3[1] = Integer.parseInt(streamReader.getAttributeValue("", "g"));
-                                    tmpRoadColor3[2] = Integer.parseInt(streamReader.getAttributeValue("", "b"));
-                                    tmpRoadColor3[3] = Integer.parseInt(streamReader.getAttributeValue("", "a"));
-                                    break;
-                                case "RoadPainting_1":
-                                    if("true".equals(streamReader.getAttributeValue("","value"))) {
-                                        tmpRoadPaintingName1 = streamReader.getAttributeValue("", "name");
-                                        System.out.println("RoadPainting_1 true parameter:   " + tmpRoadPaintingName1);
-                                    }
-                                    break;
-                                case "RoadPainting_2":
-                                    if("true".equals(streamReader.getAttributeValue("","value"))) {
-                                        tmpRoadPaintingName2 = streamReader.getAttributeValue("", "name");
-                                        System.out.println("RoadPainting_2 true parameter:   " + tmpRoadPaintingName2);
-                                    }
-                                    break;
-                                case "RoadPainting_3":
-                                    if("true".equals(streamReader.getAttributeValue("","value"))) {
-                                        tmpRoadPaintingName3 = streamReader.getAttributeValue("", "name");
-                                        System.out.println("RoadPainting_3 true parameter:   " + tmpRoadPaintingName3);
-                                    }
-                                    break;
-                                case "":
-                                    break;
-                                default:
-                                    break;
-                            }
+
                         }
 
                         break;
                     case XMLStreamConstants.END_ELEMENT:
-                        if ("Object".equals(streamReader.getLocalName())){
-                            String[] splitName = tmpName.split("/");
-                            if (DynamicObjects != null) {
-                                CreateClassElementByName(splitName[1],splitName[2],splitName[3]);
-                            } else {
-                                streamReader.close();
-                                return false;
-                            }
+                        if (objectcaseWithEndElement()){
+                            return false;
                         }
-                        if ("Scene".equals(streamReader.getLocalName())){
-                            scene = new Scene(sceneWidth,sceneHeihgt,sceneMeasureType,sceneColor);
-                        }
+                        checkIfSceneEqual();
                         break;
 
                 }
@@ -200,6 +105,135 @@ public class XMLParserMain {
         else {
             streamReader.close();
             return false;
+        }
+    }
+
+    private boolean objectcaseWithEndElement() throws XMLStreamException {
+        if ("Object".equals(streamReader.getLocalName())){
+            String[] splitName = tmpName.split("/");
+            if (DynamicObjects != null) {
+                CreateClassElementByName(splitName[1],splitName[2],splitName[3]);
+            } else {
+                streamReader.close();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void parameterSwitch() {
+        switch (parameterGroupName)
+        {
+            case "RoadColor_1":
+                tmpRoadColor1[0] = Integer.parseInt(streamReader.getAttributeValue("", "r"));
+                tmpRoadColor1[1] = Integer.parseInt(streamReader.getAttributeValue("", "g"));
+                tmpRoadColor1[2] = Integer.parseInt(streamReader.getAttributeValue("", "b"));
+                tmpRoadColor1[3] = Integer.parseInt(streamReader.getAttributeValue("", "a"));
+                break;
+            case "RoadColor_2":
+                tmpRoadColor2[0] = Integer.parseInt(streamReader.getAttributeValue("", "r"));
+                tmpRoadColor2[1] = Integer.parseInt(streamReader.getAttributeValue("", "g"));
+                tmpRoadColor2[2] = Integer.parseInt(streamReader.getAttributeValue("", "b"));
+                tmpRoadColor2[3] = Integer.parseInt(streamReader.getAttributeValue("", "a"));
+                break;
+            case "RoadColor_3":
+                tmpRoadColor3[0] = Integer.parseInt(streamReader.getAttributeValue("", "r"));
+                tmpRoadColor3[1] = Integer.parseInt(streamReader.getAttributeValue("", "g"));
+                tmpRoadColor3[2] = Integer.parseInt(streamReader.getAttributeValue("", "b"));
+                tmpRoadColor3[3] = Integer.parseInt(streamReader.getAttributeValue("", "a"));
+                break;
+            case "RoadPainting_1":
+                if("true".equals(streamReader.getAttributeValue("","value"))) {
+                    tmpRoadPaintingName1 = streamReader.getAttributeValue("", "name");
+                    System.out.println("RoadPainting_1 true parameter:   " + tmpRoadPaintingName1);
+                }
+                break;
+            case "RoadPainting_2":
+                if("true".equals(streamReader.getAttributeValue("","value"))) {
+                    tmpRoadPaintingName2 = streamReader.getAttributeValue("", "name");
+                    System.out.println("RoadPainting_2 true parameter:   " + tmpRoadPaintingName2);
+                }
+                break;
+            case "RoadPainting_3":
+                if("true".equals(streamReader.getAttributeValue("","value"))) {
+                    tmpRoadPaintingName3 = streamReader.getAttributeValue("", "name");
+                    System.out.println("RoadPainting_3 true parameter:   " + tmpRoadPaintingName3);
+                }
+                break;
+            case "":
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void parameterGroupSwitch() {
+        switch (streamReader.getAttributeValue("", "name")) {
+            case "RoadColor_1":
+                parameterGroupName = "RoadColor_1";
+                break;
+            case "RoadColor_2":
+                parameterGroupName = "RoadColor_2";
+                break;
+            case "RoadColor_3":
+                parameterGroupName = "RoadColor_3";
+                break;
+            case "RoadPainting_1":
+                 parameterGroupName = "RoadPainting_1";
+                break;
+            case "RoadPainting_2":
+                parameterGroupName = "RoadPainting_2";
+                break;
+            case "RoadPainting_3":
+                parameterGroupName = "RoadPainting_3";
+                break;
+            default:
+                parameterGroupName = "";
+        }
+    }
+
+    private void checkIfSceneEqual() {
+        if ("Scene".equals(streamReader.getLocalName())){
+            scene = new Scene(sceneWidth,sceneHeihgt,sceneMeasureType,sceneColor);
+        }
+    }
+
+    private void checkIfEqual() {
+        if ("Objects".equals(streamReader.getLocalName())) {
+            DynamicObjects = new ArrayList<>();
+        }
+        if ("Position".equals(streamReader.getLocalName())) {
+            tmpPos[0] = (int) Math.round(Double.parseDouble(streamReader.getAttributeValue("", "x")));
+            tmpPos[1] = (int) Math.round(Double.parseDouble(streamReader.getAttributeValue("", "y")));
+        }
+        if ("Transform".equals(streamReader.getLocalName())) {
+            tmpTransform[0] = Double.parseDouble(streamReader.getAttributeValue("", "m21"));
+            tmpTransform[1] = Double.parseDouble(streamReader.getAttributeValue("", "m11"));
+            tmpTransform[2] = Double.parseDouble(streamReader.getAttributeValue("", "m22"));
+            tmpTransform[3] = Double.parseDouble(streamReader.getAttributeValue("", "m12"));
+        }
+        if ("ZLevel".equals(streamReader.getLocalName())) {
+            tmpZlevel = Integer.parseInt(streamReader.getAttributeValue("", "ZLevel"));
+        }
+        if ("Opacity".equals(streamReader.getLocalName())) {
+            tmpOpacity = Integer.parseInt(streamReader.getAttributeValue("", "Opacity"));
+        }
+    }
+
+    private void sceneCase() {
+        if ("Scene".equals(streamReader.getLocalName()))
+        {
+            sceneWidth = Integer.parseInt(streamReader.getAttributeValue("","width"));
+            sceneHeihgt = Integer.parseInt(streamReader.getAttributeValue("","height"));
+            sceneMeasureType = Integer.parseInt(streamReader.getAttributeValue("","measureType"));
+            sceneColor = streamReader.getAttributeValue("","color");
+        }
+    }
+
+    private void objectCase() {
+        if ("Object".equals(streamReader.getLocalName())) {
+            tmpName = streamReader.getAttributeValue("", "name");
+            tmpId = Integer.parseInt(streamReader.getAttributeValue("", "id"));
         }
     }
 
@@ -220,35 +254,7 @@ public class XMLParserMain {
                     DynamicObjects.add(new Tree(tmpId, tmpPos, tmpTransform,tmpZlevel,tmpOpacity));
                     break;
                 case "parking":
-                    switch (collection)
-                    {
-                        case "road_signs":
-                        System.out.println(collectionType + " táblát hozunk létre");
-                            switch (elementType) {
-                                case "314_10_.svg": //bal
-                                    DynamicObjects.add(new ParkingSign(tmpId,tmpPos,tmpTransform,tmpZlevel,tmpOpacity, ParkingSign.ParkingSignType.ParkingLeft));
-                                    break;
-                                case "314_20_.svg": //jobb
-                                    DynamicObjects.add((new ParkingSign(tmpId,tmpPos,tmpTransform,tmpZlevel,tmpOpacity, ParkingSign.ParkingSignType.ParkingRight)));
-                                    break;
-                            }
-                            break;
-                        case "misc":
-                            System.out.println(collectionType + " elemet hozunk létre");
-                            switch (elementType) {
-                                case "parking_0.svg":
-                                    DynamicObjects.add(new Parking(tmpId,tmpPos,150, 600, tmpTransform,tmpZlevel,tmpOpacity, Parking.ParkingElement.ParallelParking, false));
-                                    break;
-                                case "parking_90.svg":
-                                    DynamicObjects.add(new Parking(tmpId,tmpPos,300, 460, tmpTransform,tmpZlevel,tmpOpacity, Parking.ParkingElement.PerpendicularParking, false));
-                                    break;
-                                case "parking_bollard.pix":
-                                    DynamicObjects.add(new Parking(tmpId,tmpPos,80 ,75, tmpTransform,tmpZlevel,tmpOpacity, Parking.ParkingElement.Bollard, true));
-                                    break;
-                            }
-
-                            break;
-                    }
+                    collectionSwitch(collection, collectionType, elementType);
                     break;
                //road_signs mappában lévők kivéve a parking-ot
                 case "direction":
@@ -314,6 +320,38 @@ public class XMLParserMain {
                     break;
 
             }
+    }
+
+    private void collectionSwitch(String collection, String collectionType, String elementType) {
+        switch (collection)
+        {
+            case "road_signs":
+            System.out.println(collectionType + " táblát hozunk létre");
+                switch (elementType) {
+                    case "314_10_.svg": //bal
+                        DynamicObjects.add(new ParkingSign(tmpId,tmpPos,tmpTransform,tmpZlevel,tmpOpacity, ParkingSign.ParkingSignType.ParkingLeft));
+                        break;
+                    case "314_20_.svg": //jobb
+                        DynamicObjects.add((new ParkingSign(tmpId,tmpPos,tmpTransform,tmpZlevel,tmpOpacity, ParkingSign.ParkingSignType.ParkingRight)));
+                        break;
+                }
+                break;
+            case "misc":
+                System.out.println(collectionType + " elemet hozunk létre");
+                switch (elementType) {
+                    case "parking_0.svg":
+                        DynamicObjects.add(new Parking(tmpId,tmpPos,150, 600, tmpTransform,tmpZlevel,tmpOpacity, Parking.ParkingElement.ParallelParking, false));
+                        break;
+                    case "parking_90.svg":
+                        DynamicObjects.add(new Parking(tmpId,tmpPos,300, 460, tmpTransform,tmpZlevel,tmpOpacity, Parking.ParkingElement.PerpendicularParking, false));
+                        break;
+                    case "parking_bollard.pix":
+                        DynamicObjects.add(new Parking(tmpId,tmpPos,80 ,75, tmpTransform,tmpZlevel,tmpOpacity, Parking.ParkingElement.Bollard, true));
+                        break;
+                }
+
+                break;
+        }
     }
 
     private boolean XmlFileOpener() //

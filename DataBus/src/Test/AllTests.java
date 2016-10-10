@@ -1,4 +1,5 @@
 package Test;
+import Environment.XMLParserMain;
 import org.junit.Assert;
 import org.junit.Before;
 import static org.junit.Assert.*;
@@ -20,7 +21,7 @@ public class AllTests {
     private JFileChooser fileChooser;
 
     @Test
-    public void XMLFileOpen() throws XMLStreamException {
+    public void XMLFileOpenSuccess() throws XMLStreamException {
 
         fileChooser = new JFileChooser(new File(System.getProperty("user.dir") + "/DataBus/src/Environment"));
         int returnValue = fileChooser.showOpenDialog(fileChooser.getParent());
@@ -40,16 +41,4 @@ public class AllTests {
         }
     }
     */
-            private String getSelectedFile(JFileChooser fileChooser) {
-                File selectedFile = fileChooser.getSelectedFile();
-                String[] parse = selectedFile.getPath().split("\\\\");
-                String path = parse[parse.length - 2] + "\\" + parse[parse.length - 1];
-                System.out.println("A feldolgozandó XML: " + parse[parse.length-1]);
-                return path;
-            }
-
-    @Test
-    public void XMLFileOpenSuccess(){
-        Assert.assertNotNull(fileChooser);
-    }
 }
