@@ -100,6 +100,7 @@ public class XMLParserMain {
                 }
             }
             streamReader.close();
+            WriteOutElements(DynamicObjects);
             return true;
         }
         else {
@@ -243,6 +244,7 @@ public class XMLParserMain {
                 //misc mappában lévők
                 case "crosswalks":
                     System.out.println(collectionType+"-t hozunk létre");
+                    DynamicObjects.add(new Crosswalk(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity));
                     break;
                 case "people": {
                     System.out.println(collectionType+"-t hozunk létre");
@@ -251,7 +253,7 @@ public class XMLParserMain {
                     break;
                 case "trees":
                     System.out.println(collectionType+"-t hozunk létre");
-                    DynamicObjects.add(new Tree(tmpId, tmpPos, tmpTransform,tmpZlevel,tmpOpacity));
+                    DynamicObjects.add(new Tree(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity));
                     break;
                 case "parking":
                     collectionSwitch(collection, collectionType, elementType);
@@ -259,12 +261,69 @@ public class XMLParserMain {
                //road_signs mappában lévők kivéve a parking-ot
                 case "direction":
                     System.out.println(collectionType+"-t hozunk létre");
+                    switch (elementType)
+                    {
+                        case "209-30_.svg": //Forward (Egyenes)
+                            DynamicObjects.add(new Direction(tmpId,tmpPos,tmpTransform, tmpZlevel, tmpOpacity, Direction.DirectionType.Forward));
+                            break;
+                        case "211-10_.svg": //Balra nyíl
+                            DynamicObjects.add(new Direction(tmpId,tmpPos,tmpTransform, tmpZlevel, tmpOpacity, Direction.DirectionType.Left));
+                            break;
+                        case "211-20_.svg": //Jobbra nyil
+                            DynamicObjects.add(new Direction(tmpId,tmpPos,tmpTransform, tmpZlevel, tmpOpacity, Direction.DirectionType.Right));
+                            break;
+                        case "214-10_.svg": //Egyenes + Balra nyil
+                            DynamicObjects.add(new Direction(tmpId,tmpPos,tmpTransform, tmpZlevel, tmpOpacity, Direction.DirectionType.ForwardLeft));
+                            break;
+                        case "214-20_.svg": //Egyenes + Jobbra nyil
+                            DynamicObjects.add(new Direction(tmpId,tmpPos,tmpTransform, tmpZlevel, tmpOpacity, Direction.DirectionType.ForwardRight));
+                            break;
+                        case "215_.svg":
+                            DynamicObjects.add(new Direction(tmpId,tmpPos,tmpTransform, tmpZlevel, tmpOpacity, Direction.DirectionType.Round));
+                        break;
+                    }
                     break;
                 case "priority":
                     System.out.println(collectionType+"-t hozunk létre");
+                    switch (elementType)
+                    {
+                        case "205_.svg": //Yield
+                            DynamicObjects.add(new Priority(tmpId,tmpPos,tmpTransform, tmpZlevel, tmpOpacity, Priority.PriorityType.Yield));
+                            break;
+                        case "206_.svg": //Stop
+                            DynamicObjects.add(new Priority(tmpId,tmpPos,tmpTransform, tmpZlevel, tmpOpacity, Priority.PriorityType.Stop));
+                            break;
+                        case "306_.svg": //Priority
+                            DynamicObjects.add(new Priority(tmpId,tmpPos,tmpTransform, tmpZlevel, tmpOpacity, Priority.PriorityType.Priority));
+                            break;
+                    }
                     break;
                 case "speed":
                     System.out.println(collectionType+"-t hozunk létre");
+                    switch (elementType)
+                    {
+                        case "274_51_.svg": //10
+                            DynamicObjects.add(new Speed(tmpId,tmpPos,tmpTransform, tmpZlevel, tmpOpacity, Speed.SpeedType.Ten));
+                            break;
+                        case "274_52_.svg": //20
+                            DynamicObjects.add(new Speed(tmpId,tmpPos,tmpTransform, tmpZlevel, tmpOpacity, Speed.SpeedType.Twenty));
+                            break;
+                        case "274_54_.svg": //40
+                            DynamicObjects.add(new Speed(tmpId,tmpPos,tmpTransform, tmpZlevel, tmpOpacity, Speed.SpeedType.Forty));
+                            break;
+                        case "274_55_.svg": //50
+                            DynamicObjects.add(new Speed(tmpId,tmpPos,tmpTransform, tmpZlevel, tmpOpacity, Speed.SpeedType.Fifty));
+                            break;
+                        case "274_57_.svg": //70
+                            DynamicObjects.add(new Speed(tmpId,tmpPos,tmpTransform, tmpZlevel, tmpOpacity, Speed.SpeedType.Seventy));
+                            break;
+                        case "274_59_.svg": //90
+                            DynamicObjects.add(new Speed(tmpId,tmpPos,tmpTransform, tmpZlevel, tmpOpacity, Speed.SpeedType.Ninety));
+                            break;
+                        case "274_60_.svg": //100
+                            DynamicObjects.add(new Speed(tmpId,tmpPos,tmpTransform, tmpZlevel, tmpOpacity, Speed.SpeedType.Hundred));
+                            break;
+                    }
                     break;
                 //road_tiles mappában lévők
                 case "2_lane_simple":
@@ -377,5 +436,22 @@ public class XMLParserMain {
             System.out.println("Nem lett megadva file");
             return false;
         }
+    }
+
+    private void WriteOutElements(List<WorldObject> DynamicObjects)
+    {
+        System.out.println();
+        System.out.println();
+        System.out.println("Objektumok:");
+        System.out.println();
+
+        int i = 0;
+        for(WorldObject object : DynamicObjects)
+        {
+            i++;
+            System.out.println(object.getClass());
+        }
+        System.out.println(i);
+
     }
 }
