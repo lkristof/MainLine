@@ -263,25 +263,25 @@ public class XMLParserMain {
             case "speed":
                 System.out.println(collectionType + "-t hozunk létre");
                 switch (elementType) {
-                    case "274_51_.svg":
+                    case "274_51_.svg": //10
                         DynamicObjects.add(new Speed(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, Speed.SpeedType.Ten));
                         break;
-                    case "274_52_.svg":
+                    case "274_52_.svg": //20
                         DynamicObjects.add(new Speed(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, Speed.SpeedType.Twenty));
                         break;
-                    case "274_54_.svg":
+                    case "274_54_.svg": //400
                         DynamicObjects.add(new Speed(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, Speed.SpeedType.Forty));
                         break;
-                    case "274_55_.svg":
+                    case "274_55_.svg": //50
                         DynamicObjects.add(new Speed(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, Speed.SpeedType.Fifty));
                         break;
-                    case "274_57_.svg":
+                    case "274_57_.svg": //70
                         DynamicObjects.add(new Speed(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, Speed.SpeedType.Seventy));
                         break;
-                    case "274_59_.svg":
+                    case "274_59_.svg": //90
                         DynamicObjects.add(new Speed(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, Speed.SpeedType.Ninety));
                         break;
-                    case "274_60_.svg":
+                    case "274_60_.svg": //100
                         DynamicObjects.add(new Speed(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, Speed.SpeedType.Hundred));
                         break;
                 }
