@@ -34,6 +34,7 @@ public class BusTest {
 
     @org.junit.Test
     public void ACCMainSwitchGetterReturnsSetterGivenValue(){
+
         bus.setACCMainSwitchState(false);
         assertEquals(bus.getACCMainSwitchState(), false);
         bus.setACCMainSwitchState(true);

@@ -16,6 +16,9 @@ import java.util.List;
 public class XMLParserMain {
 
     private XMLInputFactory factory;
+
+    public XMLInputFactory getXMLInputFactory(){return factory;}
+
     private XMLStreamReader streamReader;
     private int sceneHeihgt;
     private int sceneWidth;
@@ -40,6 +43,18 @@ public class XMLParserMain {
     private String tmpRoadPaintingName2 = "";
     private String tmpRoadPaintingName3 = "";
 
+    private static XMLParserMain instance = null;
+    private JFileChooser jFileChooser = null;
+
+    /*public JFileChooser setjFileChooser(JFileChooser jFileChooser) {
+        this.jFileChooser = jFileChooser; }
+*/
+    public static XMLParserMain getInstance(){
+        if (instance == null){
+            instance = new XMLParserMain();
+        }
+        return instance;
+    }
 
     public boolean Parser() throws XMLStreamException {
 
@@ -368,7 +383,7 @@ public class XMLParserMain {
         }
     }
 
-    private boolean XmlFileOpener() //
+    final protected boolean XmlFileOpener()
     {
         JFileChooser fileChooser = new JFileChooser(new File(System.getProperty("user.dir") + "/DataBus/src/Environment"));
         int returnValue = fileChooser.showOpenDialog(fileChooser.getParent());
