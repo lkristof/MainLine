@@ -195,8 +195,8 @@ public class XMLParserMain {
             sceneColor = streamReader.getAttributeValue("", "color");
         }
     }
-
-    private void objectCase() {
+    //for test cases
+    final protected void objectCase() {
         if ("Object".equals(streamReader.getLocalName())) {
             tmpName = streamReader.getAttributeValue("", "name");
             tmpId = Integer.parseInt(streamReader.getAttributeValue("", "id"));
