@@ -3,7 +3,7 @@ package Environment.road_signs;
 import Environment.WorldObject;
 
 /**
- * Created by Németh Kriszitna on 2016.10.07..
+ * Created by nemeth on 2016.10.07..
  */
 public class ParkingSign extends WorldObject {
 
@@ -15,5 +15,9 @@ public class ParkingSign extends WorldObject {
     public enum ParkingSignType {ParkingLeft, ParkingRight}
     ParkingSignType parkingSignType;
 
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName()+  " elem adatai:  " + "   Id: " + this.getId() + "   Zlevel: " + this.getZLevel() + "   Opacity: " + this.getOpacity()  + "  CanStuckOnIt: " + this.getCanStuckOnIt() + "  ParkingSignTye: " + this.parkingSignType;
 
+    }
 }

@@ -13,4 +13,9 @@ public class Parking extends WorldObject{
 
     public enum ParkingElement {Bollard,ParallelParking,PerpendicularParking}
     ParkingElement parkingElement;
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName()+  " elem adatai:  " + "   Id: " + this.getId() + "   Zlevel: " + this.getZLevel() + "   Opacity: " + this.getOpacity() + "  CanStuckOnIt: " + this.getCanStuckOnIt() + "  ParkingElement:" + this.parkingElement;
+    }
 }

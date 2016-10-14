@@ -3,7 +3,7 @@ package Environment.misc;
 import Environment.WorldObject;
 
 /**
- * Created by Németh Kriszitna on 2016.10.07..
+ * Created by nemeth on 2016.10.07..
  */
 public abstract class NPC extends WorldObject{
     private int movingDegree;
@@ -13,5 +13,13 @@ public abstract class NPC extends WorldObject{
         super(Id, startPosition, Width, Height, Transform, Zlevel, Opacity, true);
         this.movingDegree = movingDegree; // mozgatás iránya
         this.movingSpeed = movingSpeed; // mozgtási sebesség
+    }
+
+    @Override
+    public String toString() {
+        return "NPC{" +
+                "movingDegree=" + movingDegree +
+                ", movingSpeed=" + movingSpeed +
+                '}';
     }
 }

@@ -15,8 +15,8 @@ public class People extends WorldObject {
     }
 
 
-    public String toString()
-    {
-        return "Id" + this.getId() + "Zlevel: " + this.getZLevel() + "Opacity: " + this.getOpacity();
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName()+  " elem adatai:  " + "   Id: " + this.getId() + "   Zlevel: " + this.getZLevel() + "   Opacity: " + this.getOpacity() + "  CanStuckOnIt: " + this.getCanStuckOnIt();
     }
 }

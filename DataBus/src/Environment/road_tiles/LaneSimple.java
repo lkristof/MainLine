@@ -5,7 +5,7 @@ import Environment.WorldObject;
 import java.util.Arrays;
 
 /**
- * Created by nemet on 2016. 09. 30..
+ * Created by nemeth on 2016. 09. 30..
  */
 public class LaneSimple extends WorldObject{
     public enum RoadPaintings1 {rp_none,rp_sep_1_s,rp_sep_1_sb}
@@ -36,8 +36,15 @@ public class LaneSimple extends WorldObject{
         this.roadColor3 = roadColor3;
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return  "RoadColor1: " + Arrays.toString(roadColor1) + " " + "RoadColor2: " + Arrays.toString(roadColor2) + " " + "RoadColor3: " + Arrays.toString(roadColor3) + " " + roadPaintings1.toString() + " " + roadPaintings2.toString() + " " + roadPaintings3.toString() + " " + laneSimpleType.toString();
+    }*/
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName()+  " elem adatai:  " + "   Id: " + this.getId() + "   Zlevel: " + this.getZLevel() + "   Opacity: " + this.getOpacity() + "  CanStuckOnIt: " + this.getCanStuckOnIt() + "  LaneSimpleType: " + this.laneSimpleType + "  RoadColor1: " + Arrays.toString(roadColor1) + "  RoadColor2: " + Arrays.toString(roadColor2) + "  RoadColor3: " + Arrays.toString(roadColor3) + "  RoadPaintigs1: " + this.roadPaintings1 + "  RoadPaintings2: " + this.roadPaintings2 + "  RoadPaintings3: " + this.roadPaintings3;
+
+
     }
 }

@@ -2,8 +2,10 @@ package Environment.road_tiles;
 
 import Environment.WorldObject;
 
+import java.util.Arrays;
+
 /**
- * Created by nemet on 2016. 09. 30..
+ * Created by nemeth on 2016. 09. 30..
  */
 public class LaneAdvanced extends WorldObject {
     public enum RoadPaintings1 {rp_none,rp_sep_1_s}
@@ -29,4 +31,11 @@ public class LaneAdvanced extends WorldObject {
         this.roadColor2 = roadColor2;
         this.roadColor3 = roadColor3;
     }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName()+  " elem adatai:  " + "   Id: " + this.getId() + "   Zlevel: " + this.getZLevel() + "   Opacity: " + this.getOpacity() + "  CanStuckOnIt: " + this.getCanStuckOnIt() + "  LaneAdvancedType: " + this.laneAdvancedType + "  RoadColor1: " + Arrays.toString(roadColor1) + "  RoadColor2: " + Arrays.toString(roadColor2) + "  RoadColor3: " + Arrays.toString(roadColor3) + "  RoadPaintigs1: " + this.roadPaintings1 + "  RoadPaintings2: " + this.roadPaintings2 + "  RoadPaintings3: " + this.roadPaintings3;
+
+    }
 }
+
