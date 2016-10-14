@@ -24,7 +24,7 @@ public class XMLParserMain {
     private int sceneWidth;
     private int sceneMeasureType;
     private String sceneColor;
-    public Scene scene;
+    private Scene scene;
 
     private int tmpId;
     private String tmpName;
@@ -435,5 +435,10 @@ public class XMLParserMain {
         {
             System.out.println("Objektum: " + object.toString());
         }
+    }
+
+    public Scene getScene()
+    {
+        return this.scene;
     }
 }

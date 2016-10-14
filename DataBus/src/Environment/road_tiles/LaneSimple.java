@@ -13,6 +13,19 @@ public class LaneSimple extends WorldObject{
     public enum RoadPaintings3 {rp_none,rp_sep_3_s,rp_sep_3_sb}
     public enum LaneSimpleType {Left45,Left65,Left90,Right45,Right65,Right90,Straight}
 
+    // rp_sep_1 bal szél
+    // rp_sep_2 közép
+    // rp_sep_3 jobb szél
+    // none - nincs
+    // s - sima vonal (vékony)
+    // sb - sima vonal (vastag - bold)
+    // d - szaggatott vonal
+    // ss - dupla sima vonal (dupla záróvonal)
+    // ds - szaggatott záró
+    // sd - záró szaggatott
+    // bnd
+    // dbnd - double pontozott (talán a fényvisszaverő)
+
     int[] roadColor1;
     int[] roadColor2;
     int[] roadColor3;
