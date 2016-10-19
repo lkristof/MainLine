@@ -31,6 +31,10 @@ public class XMLParserMain {
     private String parameterGroupName;
 
     private List<WorldObject> DynamicObjects = null;
+
+    //interface-hez tulajdonsáj hogy visszaadhassuk a teljes listát
+    public List<WorldObject> getDynamicObjects(){return  DynamicObjects; }
+
     private int[] tmpPos = new int[2];
     private double[] tmpTransform = new double[4];
     private int tmpZlevel;
@@ -46,9 +50,9 @@ public class XMLParserMain {
     private static XMLParserMain instance = null;
     private JFileChooser jFileChooser = null;
 
-    /*public JFileChooser setjFileChooser(JFileChooser jFileChooser) {
+    public void setjFileChooser(JFileChooser jFileChooser) {
         this.jFileChooser = jFileChooser; }
-*/
+
     public static XMLParserMain getInstance(){
         if (instance == null){
             instance = new XMLParserMain();
